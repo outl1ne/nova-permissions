@@ -24,10 +24,10 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../configs/nova-permissions.php', 'nova-permissions');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/nova-permissions.php', 'nova-permissions');
 
         $this->publishes([
-            __DIR__ . '/../../configs/nova-permissions.php' => config_path('nova-permissions.php'),
+            __DIR__ . '/../../config/nova-permissions.php' => config_path('nova-permissions.php'),
         ], 'config');
     }
 
