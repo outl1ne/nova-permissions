@@ -51,7 +51,7 @@ Load it into your Nova Tools to display the Roles within your Resources
 ```php
 // app/Providers/NovaServiceProvider.php
 
-use Silvanite\NovaPermissions\NovaPermissions;
+use Outl1ne\NovaPermissions\NovaPermissions;
 
 public function tools()
     {
@@ -66,7 +66,7 @@ You can assign Users to Roles from the Role resource, however if you want to ass
 ```php
 // app/Nova/User.php
 
-use Silvanite\NovaPermissions\Role;
+use Outl1ne\NovaPermissions\Role;
 
 public function fields(Request $request)
 {

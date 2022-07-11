@@ -30,14 +30,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Silvanite\\NovaPermissions\\": "src-php/"
+            "Outl1ne\\NovaPermissions\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Silvanite\\NovaPermissions\\Providers\\AuthServiceProvider",
-                "Silvanite\\NovaPermissions\\Providers\\PackageServiceProvider"
+                "Outl1ne\\NovaPermissions\\Providers\\AuthServiceProvider",
+                "Outl1ne\\NovaPermissions\\Providers\\PackageServiceProvider"
             ]
         }
     }
