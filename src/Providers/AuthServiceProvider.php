@@ -1,11 +1,11 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions\Providers;
+namespace Outl1ne\NovaPermissions\Providers;
 
 use Silvanite\Brandenburg\Role;
 use Illuminate\Support\Facades\Gate;
-use Silvanite\NovaToolPermissions\Policies\RolePolicy;
-use Silvanite\NovaToolPermissions\Policies\UserPolicy;
+use Outl1ne\NovaPermissions\Policies\RolePolicy;
+use Outl1ne\NovaPermissions\Policies\UserPolicy;
 use Silvanite\Brandenburg\Traits\ValidatesPermissions;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

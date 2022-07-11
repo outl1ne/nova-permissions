@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions;
+namespace Outl1ne\NovaPermissions;
 
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -9,8 +9,8 @@ use Laravel\Nova\Fields\Text;
 use Silvanite\Brandenburg\Policy;
 use Benjaminhirsch\NovaSlugField\Slug;
 use Laravel\Nova\Fields\BelongsToMany;
+use Outl1ne\NovaFieldCheckboxes\Checkboxes;
 use Silvanite\Brandenburg\Role as RoleModel;
-use Silvanite\NovaFieldCheckboxes\Checkboxes;
 use Benjaminhirsch\NovaSlugField\TextWithSlug;
 
 class Role extends Resource
@@ -76,7 +76,7 @@ class Role extends Resource
                 return count($this->users);
             })->onlyOnIndex(),
 
-            BelongsToMany::make(__('Users'), 'users', config('novatoolpermissions.userResource', 'App\Nova\User'))
+            BelongsToMany::make(__('Users'), 'users', config('nova-permissions.userResource', 'App\Nova\User'))
                 ->searchable(),
         ];
     }
@@ -88,7 +88,7 @@ class Role extends Resource
      */
     public static function group()
     {
-        return __(config('novatoolpermissions.roleResourceGroup', static::$group));
+        return __(config('nova-permissions.roleResourceGroup', static::$group));
     }
 
     /**

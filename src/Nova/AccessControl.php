@@ -1,10 +1,10 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions\Nova;
+namespace Outl1ne\NovaPermissions\Nova;
 
 use Laravel\Nova\Panel;
 use Silvanite\Brandenburg\Role as RoleModel;
-use Silvanite\NovaFieldCheckboxes\Checkboxes;
+use Outl1ne\NovaFieldCheckboxes\Checkboxes;
 
 class AccessControl
 {
@@ -30,8 +30,9 @@ class AccessControl
                         $role->id => __($role->name),
                     ];
                 })
-                ->sort()
-                ->toArray())
+                    ->sort()
+                    ->toArray()
+            )
                 ->withoutTypeCasting(),
         ];
     }

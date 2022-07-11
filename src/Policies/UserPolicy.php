@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions\Policies;
+namespace Outl1ne\NovaPermissions\Policies;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -8,16 +8,6 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class UserPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     public function viewAny($user)
     {

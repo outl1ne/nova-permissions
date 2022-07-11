@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions;
+namespace Outl1ne\NovaPermissions;
 
 use Illuminate\Database\Eloquent\Model;
 

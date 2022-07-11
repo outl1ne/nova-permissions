@@ -1,12 +1,12 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions;
+namespace Outl1ne\NovaPermissions;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
-use Silvanite\NovaToolPermissions\Role;
+use Outl1ne\NovaPermissions\Role;
 
-class NovaToolPermissions extends Tool
+class NovaPermissions extends Tool
 {
     /**
      * Perform any tasks that need to happen when the tool is booted.

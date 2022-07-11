@@ -2,17 +2,17 @@
 
 Add Access Control by means of User based Roles and Permissions to your Nova installation. Includes default User and Role Policies which can be managed through your Nova Admin Panel.
 
-![Tool Demo](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-demo.gif)
+![Tool Demo](./docs/preview-demo.gif)
 
 This tool uses the [Silvanite\Brandenburg](https://github.com/Silvanite/brandenburg) package under the hood to manage user roles. Brandenburg is used because it has clear separation of concerns
 
-> *Roles* are defined in the *Database*
+> _Roles_ are defined in the _Database_
 
 and
 
-> *Permissions* are defined in the *Codebase*
+> _Permissions_ are defined in the _Codebase_
 
-As a result, you won't see any *Permissions* resource. The *Roles* resource will get the permissions from the Gates defined in your code.
+As a result, you won't see any _Permissions_ resource. The _Roles_ resource will get the permissions from the Gates defined in your code.
 
 ## Package maintenance
 
@@ -23,7 +23,7 @@ Unfortunately I am no longer actively working in the Laravel ecosystem and as su
 Install the tool through composer
 
 ```sh
-composer require silvanite/novatoolpermissions
+composer require outl1ne/nova-permissions
 ```
 
 Run the migrations to add the database tables required by Brandenburg.
@@ -51,12 +51,12 @@ Load it into your Nova Tools to display the Roles within your Resources
 ```php
 // app/Providers/NovaServiceProvider.php
 
-use Silvanite\NovaToolPermissions\NovaToolPermissions;
+use Silvanite\NovaPermissions\NovaPermissions;
 
 public function tools()
     {
         return [
-            new NovaToolPermissions(),
+            new NovaPermissions(),
         ];
     }
 ```
@@ -66,7 +66,7 @@ You can assign Users to Roles from the Role resource, however if you want to ass
 ```php
 // app/Nova/User.php
 
-use Silvanite\NovaToolPermissions\Role;
+use Silvanite\NovaPermissions\Role;
 
 public function fields(Request $request)
 {
@@ -77,10 +77,10 @@ public function fields(Request $request)
 }
 ```
 
-If you are not using the defaul `App\Nova\User` Resource you can customise this by publishing the `novatoolpermissions config and setting your User resource model.
+If you are not using the defaul `App\Nova\User` Resource you can customise this by publishing the `nova-permissions` config and setting your User resource model.
 
 ```sh
-php artisan vendor:publish --provider="Silvanite\NovaToolPermissions\Providers\PackageServiceProvider"
+php artisan vendor:publish --provider="Outl1ne\NovaPermissions\Providers\PackageServiceProvider"
 ```
 
 Remove the default `viewNova` Gate to use the Gate included by this package. You will need to keep the gate() method in place, just empty it.
@@ -99,13 +99,13 @@ protected function gate()
 
 Once installed, go ahead and create your first Role. E.g. `Administrator` and assign all permissions to your new Role.
 
-![Create/Edit Roles](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-addrole.png)
+![Create/Edit Roles](./docs/preview-addrole.png)
 
 Finally assign the Administrator Role to your user account.
 
-![Attach Role to User](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-attachuser.png)
+![Attach Role to User](./docs/preview-attachuser.png)
 
-![Roles index with User count](https://raw.githubusercontent.com/Silvanite/novatoolpermissions/master/preview-roles.png)
+![Roles index with User count](./docs/preview-roles.png)
 
 **Note:** By default, the package allows anyone access to a permission if no single user has access to it. This is to prevent you from locking yourself out of features. As such, it is important to define your primary admin role which has access to all permissions, meaning nobody else has access unless you specifically grant it.
 
@@ -126,9 +126,9 @@ This package comes with a set of default permissions to provide full access cont
 
 ## Custom permissions
 
-To create your own permissions, simply define them in your service provider and create a *Policy* for your resource/model. Let's work with a common *Blog* example and assume that you have a **Blog** Model and Resource in your application.
+To create your own permissions, simply define them in your service provider and create a _Policy_ for your resource/model. Let's work with a common _Blog_ example and assume that you have a **Blog** Model and Resource in your application.
 
-Create a *Policy* for your Nova Resource
+Create a _Policy_ for your Nova Resource
 
 Create a new policy for your blog
 

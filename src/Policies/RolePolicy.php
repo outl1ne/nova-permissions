@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\NovaToolPermissions\Policies;
+namespace Outl1ne\NovaPermissions\Policies;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -58,7 +58,7 @@ class RolePolicy
     {
         return Gate::any(['assignRoles', 'manageRoles'], $user);
     }
-    
+
     public function detachAnyUser($user, $model)
     {
         return $user->can('manageRoles');
