@@ -4,6 +4,7 @@ namespace Outl1ne\NovaPermissions;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
+use Illuminate\Http\Request;
 use Outl1ne\NovaPermissions\Role;
 
 class NovaPermissions extends Tool
@@ -18,5 +19,10 @@ class NovaPermissions extends Tool
         Nova::resources([
             Role::class,
         ]);
+    }
+
+    public function menu(Request $request)
+    {
+        return [];
     }
 }
