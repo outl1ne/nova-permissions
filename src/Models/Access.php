@@ -1,6 +1,6 @@
 <?php
 
-namespace Outl1ne\NovaPermissions;
+namespace Outl1ne\NovaPermissions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

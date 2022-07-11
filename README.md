@@ -66,7 +66,7 @@ You can assign Users to Roles from the Role resource, however if you want to ass
 ```php
 // app/Nova/User.php
 
-use Outl1ne\NovaPermissions\Role;
+use Outl1ne\NovaPermissions\Nova\Resources\Role;
 
 public function fields(Request $request)
 {

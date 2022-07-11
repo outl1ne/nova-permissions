@@ -3,7 +3,7 @@
 namespace Outl1ne\NovaPermissions\Nova;
 
 use Laravel\Nova\Panel;
-use Silvanite\Brandenburg\Role as RoleModel;
+use Silvanite\Brandenburg\Role;
 use Outl1ne\NovaFieldCheckboxes\Checkboxes;
 
 class AccessControl
@@ -15,21 +15,15 @@ class AccessControl
 
     public static function fields()
     {
-        $options = collect(RoleModel::all()->filter(function ($value) {
+        $options = collect(Role::all()->filter(function ($value) {
             return $value->hasPermission('canBeGivenAccess');
         }));
 
-        if (!$options->count()) {
-            return [];
-        }
+        if (!$options->count()) return [];
 
         return [
             Checkboxes::make(__('Roles To Allow Access'), 'access_roles')->options(
-                $options->mapWithKeys(function ($role) {
-                    return [
-                        $role->id => __($role->name),
-                    ];
-                })
+                $options->mapWithKeys(fn ($role) => [$role->id => __($role->name)])
                     ->sort()
                     ->toArray()
             )

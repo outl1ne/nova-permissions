@@ -3,8 +3,8 @@
 namespace Outl1ne\NovaPermissions\Traits;
 
 use Illuminate\Support\Arr;
-use Outl1ne\NovaPermissions\Access;
 use Illuminate\Support\Facades\Request;
+use Outl1ne\NovaPermissions\Models\Access;
 
 trait HasAccessControl
 {

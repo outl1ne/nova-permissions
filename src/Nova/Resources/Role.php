@@ -1,6 +1,6 @@
 <?php
 
-namespace Outl1ne\NovaPermissions;
+namespace Outl1ne\NovaPermissions\Nova\Resources;
 
 use Laravel\Nova\Resource;
 use Laravel\Nova\Fields\ID;
@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Silvanite\Brandenburg\Policy;
+use Silvanite\Brandenburg\Role as RoleModel;
 use Laravel\Nova\Fields\BelongsToMany;
 use Outl1ne\NovaFieldCheckboxes\Checkboxes;
-use Silvanite\Brandenburg\Role as RoleModel;
 
 class Role extends Resource
 {
