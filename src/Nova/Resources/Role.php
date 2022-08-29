@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Silvanite\Brandenburg\Policy;
 use Silvanite\Brandenburg\Role as RoleModel;
 use Laravel\Nova\Fields\BelongsToMany;
-use Outl1ne\NovaFieldCheckboxes\Checkboxes;
+use Silvanite\NovaFieldCheckboxes\Checkboxes;
 
 class Role extends Resource
 {
