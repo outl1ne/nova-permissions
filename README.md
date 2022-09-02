@@ -2,25 +2,27 @@
 
 Add Access Control by means of User based Roles and Permissions to your Nova installation. Includes default User and Role Policies which can be managed through your Nova Admin Panel.
 
-![Tool Demo](./docs/preview-demo.gif)
-
 This tool uses the [Silvanite\Brandenburg](https://github.com/Silvanite/brandenburg) package under the hood to manage user roles. Brandenburg is used because it has clear separation of concerns
 
-> _Roles_ are defined in the _Database_
+This package is a fork of the unmaintained Nova 3 version of [Silvanite/novatoolpermissions](https://github.com/Silvanite/novatoolpermissions).
 
-and
+## Screenshots
+
+![Index view](./docs/preview-index.png)
+
+![Form view](./docs/preview-form.png)
+
+## Premise
+
+> _Roles_ are defined in the _Database_
 
 > _Permissions_ are defined in the _Codebase_
 
 As a result, you won't see any _Permissions_ resource. The _Roles_ resource will get the permissions from the Gates defined in your code.
 
-## Package maintenance
-
-Unfortunately I am no longer actively working in the Laravel ecosystem and as such am unable to maintian this package. If anyone would like to take over the maintenance of the package please get in touch (open an issue or contact me on [Twitter](https://twitter.com/m2de_io)).
-
 ## Installation
 
-Install the tool through composer
+Install the tool using composer
 
 ```sh
 composer require outl1ne/nova-permissions
@@ -32,7 +34,7 @@ Run the migrations to add the database tables required by Brandenburg.
 php artisan migrate
 ```
 
-Add the `HasRoles` trait to your User model as per the Brandenburg installation instructions.
+Add the `HasRoles` trait to your User model as per the [Brandenburg installation instructions](https://github.com/Silvanite/Brandenburg).
 
 ```php
 // app/User.php
@@ -61,7 +63,7 @@ public function tools()
     }
 ```
 
-You can assign Users to Roles from the Role resource, however if you want to assign Roles from your User resource you will need to add an additional relationship ...
+You can assign Users to Roles from the Role resource, however if you want to assign Roles from your User resource you will need to add an additional relationship.
 
 ```php
 // app/Nova/User.php
@@ -99,13 +101,7 @@ protected function gate()
 
 Once installed, go ahead and create your first Role. E.g. `Administrator` and assign all permissions to your new Role.
 
-![Create/Edit Roles](./docs/preview-addrole.png)
-
 Finally assign the Administrator Role to your user account.
-
-![Attach Role to User](./docs/preview-attachuser.png)
-
-![Roles index with User count](./docs/preview-roles.png)
 
 **Note:** By default, the package allows anyone access to a permission if no single user has access to it. This is to prevent you from locking yourself out of features. As such, it is important to define your primary admin role which has access to all permissions, meaning nobody else has access unless you specifically grant it.
 
@@ -244,6 +240,11 @@ public function fields(Request $request)
 }
 ```
 
-## Support
+## Credits
 
-If you require any support please contact me on [Twitter](https://twitter.com/m2de_io) or open an issue on this repository.
+-   [Marco Mark (@m2de)](https://github.com/m2de) - Original creator of Silvanite/novatoolpermissions
+-   [Tarvo Reinpalu](https://github.com/tarpsvo)
+
+## License
+
+Nova Permissions is open-sourced software licensed under the [MIT license](LICENSE.md).
