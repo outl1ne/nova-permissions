@@ -25,7 +25,6 @@
         "php": ">=8.0",
         "laravel/nova": "^4.0",
         "silvanite/brandenburg": "^1.0",
-        "silvanite/novafieldcheckboxes": "dev-nova-4",
         "benjaminhirsch/nova-slug-field": "^1.2.3"
     },
     "autoload": {
@@ -45,10 +44,6 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/boxraiser/novafieldcheckboxes"
         }
     ]
 }

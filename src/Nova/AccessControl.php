@@ -2,9 +2,9 @@
 
 namespace Outl1ne\NovaPermissions\Nova;
 
+use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Panel;
 use Silvanite\Brandenburg\Role;
-use Silvanite\NovaFieldCheckboxes\Checkboxes;
 
 class AccessControl
 {
@@ -22,11 +22,17 @@ class AccessControl
         if (!$options->count()) return [];
 
         return [
-            Checkboxes::make(__('Roles To Allow Access'), 'access_roles')->options(
-                $options->mapWithKeys(fn ($role) => [$role->id => __($role->name)])
-                    ->sort()
-                    ->toArray()
-            )
+            BooleanGroup::make(__('Roles To Allow Access'), 'access_roles')
+                ->resolveUsing(
+                    fn ($value) => collect($value)
+                        ->mapWithKeys(fn ($permission) => [$permission => true])
+                        ->toArray()
+                )
+                ->options(
+                    $options->mapWithKeys(fn ($role) => [$role->id => __($role->name)])
+                        ->sort()
+                        ->toArray()
+                )
                 ->withoutTypeCasting(),
         ];
     }

@@ -8,31 +8,14 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Silvanite\Brandenburg\Policy;
-use Silvanite\Brandenburg\Role as RoleModel;
+use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\BelongsToMany;
-use Silvanite\NovaFieldCheckboxes\Checkboxes;
 
 class Role extends Resource
 {
-    /**
-     * The model the resource corresponds to.
-     *
-     * @var string
-     */
-    public static $model = RoleModel::class;
-
-    /**
-     * The single value that should be used to represent the resource when being displayed.
-     *
-     * @var string
-     */
+    public static $model = \Silvanite\Brandenburg\Role::class;
     public static $title = 'name';
 
-    /**
-     * The columns that should be searched.
-     *
-     * @var array
-     */
     public static $search = [
         'id',
         'slug',
@@ -43,12 +26,6 @@ class Role extends Resource
         'users',
     ];
 
-    /**
-     * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function fields(Request $request)
     {
         return [
@@ -63,14 +40,18 @@ class Role extends Resource
                 ->updateRules('unique:roles,slug,{{resourceId}}')
                 ->sortable(),
 
-            Checkboxes::make(__('Permissions'), 'permissions')->options(collect(Policy::all())
-                ->mapWithKeys(function ($policy) {
-                    return [
-                        $policy => __($policy),
-                    ];
-                })
-                ->sort()
-                ->toArray()),
+            BooleanGroup::make(__('Permissions'), 'permissions')
+                ->resolveUsing(
+                    fn ($value) => collect($value)
+                        ->mapWithKeys(fn ($permission) => [$permission => true])
+                        ->toArray()
+                )
+                ->options(
+                    collect(Policy::all())
+                        ->mapWithKeys(fn ($policy) => [$policy => __($policy)])
+                        ->sort()
+                        ->toArray()
+                ),
 
             Text::make(__('Users'), function () {
                 return count($this->users);
@@ -81,75 +62,36 @@ class Role extends Resource
         ];
     }
 
-    /**
-     * Get the logical group associated with the resource.
-     *
-     * @return string
-     */
     public static function group()
     {
         return __(config('nova-permissions.roleResourceGroup', static::$group));
     }
 
-    /**
-     * Get the displayable label of the resource.
-     *
-     * @return string
-     */
     public static function label()
     {
         return __('Roles');
     }
 
-    /**
-     * Get the displayable singular label of the resource.
-     *
-     * @return string
-     */
     public static function singularLabel()
     {
         return __('Role');
     }
 
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function cards(Request $request)
     {
         return [];
     }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function filters(Request $request)
     {
         return [];
     }
 
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function lenses(Request $request)
     {
         return [];
     }
 
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function actions(Request $request)
     {
         return [];
