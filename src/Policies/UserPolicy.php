@@ -19,7 +19,7 @@ class UserPolicy
         return Gate::any(['viewUsers', 'manageUsers'], $user);
     }
 
-    public function create($user, $resource)
+    public function create($user)
     {
         return $user->can('manageUsers');
     }

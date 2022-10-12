@@ -19,7 +19,7 @@ class RolePolicy
         return Gate::any(['viewRoles', 'manageRoles'], $user);
     }
 
-    public function create($user, $resource)
+    public function create($user)
     {
         return $user->can('manageRoles');
     }
