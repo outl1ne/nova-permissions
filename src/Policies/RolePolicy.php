@@ -9,57 +9,47 @@ class RolePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     public function viewAny($user)
     {
         return Gate::any(['viewRoles', 'manageRoles'], $user);
     }
 
-    public function view($user)
+    public function view($user, $resource)
     {
         return Gate::any(['viewRoles', 'manageRoles'], $user);
     }
 
-    public function create($user)
+    public function create($user, $resource)
     {
         return $user->can('manageRoles');
     }
 
-    public function update($user)
+    public function update($user, $resource)
     {
         return $user->can('manageRoles');
     }
 
-    public function delete($user)
+    public function delete($user, $resource)
     {
         return $user->can('manageRoles');
     }
 
-    public function restore($user)
+    public function restore($user, $resource)
     {
         return $user->can('manageRoles');
     }
 
-    public function forceDelete($user)
+    public function forceDelete($user, $resource)
     {
         return $user->can('manageRoles');
     }
 
-    public function attachAnyUser($user, $model)
+    public function attachAnyUser($user, $resource)
     {
         return Gate::any(['assignRoles', 'manageRoles'], $user);
     }
 
-    public function detachAnyUser($user, $model)
+    public function detachAnyUser($user, $resource)
     {
         return $user->can('manageRoles');
     }

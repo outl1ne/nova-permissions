@@ -14,37 +14,37 @@ class UserPolicy
         return Gate::any(['viewUsers', 'manageUsers'], $user);
     }
 
-    public function view($user)
+    public function view($user, $resource)
     {
         return Gate::any(['viewUsers', 'manageUsers'], $user);
     }
 
-    public function create($user)
+    public function create($user, $resource)
     {
         return $user->can('manageUsers');
     }
 
-    public function update($user)
+    public function update($user, $resource)
     {
         return $user->can('manageUsers');
     }
 
-    public function delete($user)
+    public function delete($user, $resource)
     {
         return $user->can('manageUsers');
     }
 
-    public function restore($user)
+    public function restore($user, $resource)
     {
         return $user->can('manageUsers');
     }
 
-    public function forceDelete($user)
+    public function forceDelete($user, $resource)
     {
         return $user->can('manageUsers');
     }
 
-    public function attachAnyRole($user, $model)
+    public function attachAnyRole($user, $resource)
     {
         return Gate::any(['assignRoles', 'manageRoles'], $user);
     }
