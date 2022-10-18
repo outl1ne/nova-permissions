@@ -46,6 +46,11 @@ class Role extends Resource
                         ->mapWithKeys(fn ($permission) => [$permission => true])
                         ->toArray()
                 )
+                ->fillUsing(function ($request, $model, $attribute) {
+                    $permissions = json_decode($request->{$attribute} ?? '[]', true) ?? [];
+                    $permissions = collect($permissions)->filter(fn ($p) => !!$p)->keys()->toArray();
+                    $model->{$attribute} = $permissions;
+                })
                 ->options(
                     collect(Policy::all())
                         ->mapWithKeys(fn ($policy) => [$policy => __($policy)])
